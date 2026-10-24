@@ -1,0 +1,124 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #111827;
+  color: white;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+h1 {
+  color: #67e8f9;
+  margin-bottom: 30px;
+  font-size: clamp(22px, 4vw, 36px);
+  text-shadow: 0 0 12px #0891b2;
+}
+
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(0, 1fr));
+  grid-template-rows: repeat(4, 90px);
+  gap: 5px;
+  max-width: 1250px;
+  margin: auto;
+}
+
+.element {
+  grid-column: var(--col);
+  grid-row: var(--row);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-size: clamp(12px, 1.5vw, 22px);
+  font-weight: bold;
+  color: #172033;
+  cursor: pointer;
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+/* Atomic number */
+.element::before {
+  content: attr(data-number);
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  font-size: 10px;
+  font-weight: normal;
+}
+
+/* Element name */
+.element::after {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 4px;
+  left: 2px;
+  right: 2px;
+  font-size: clamp(6px, 0.7vw, 10px);
+  font-weight: normal;
+  text-align: center;
+}
+
+/* Element category colors */
+.nonmetal {
+  background: #86efac;
+}
+
+.noble {
+  background: #93c5fd;
+}
+
+.metalloid {
+  background: #fde68a;
+}
+
+.metal {
+  background: #f9a8d4;
+}
+
+/* Hover animation */
+.element:hover {
+  transform: scale(1.12);
+  z-index: 2;
+  box-shadow: 0 0 18px currentColor;
+  filter: brightness(1.12);
+}
+
+.note {
+  margin-top: 25px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+  body {
+    padding: 20px 8px;
+  }
+
+  .periodic-table {
+    gap: 2px;
+    grid-template-rows: repeat(4, 60px);
+    overflow-x: auto;
+  }
+
+  .element {
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .element::before {
+    top: 2px;
+    left: 2px;
+    font-size: 7px;
+  }
+}
